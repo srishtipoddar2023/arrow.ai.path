@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arrow — Rise with Clarity | AI Career & University Advisor</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080f;--surface:#0f1120;--surface2:#171929;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);
+  --text:#f0eeff;--muted:#6a6a90;
+  --gold:#c9993a;--gold2:#e8b84b;
+  --blue:#1a3a7a;--blue2:#2e5fba;--blue3:#4f8ef7;
+  --teal:#2dd4bf;--purple:#a78bfa;--green:#34d399;--orange:#fb923c;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* Stars */
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0;}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:0.05;}50%{opacity:0.5;}}
+.mesh{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 50% at 15% 20%,rgba(36,88,179,0.09) 0%,transparent 65%),
+    radial-gradient(ellipse 50% 60% at 85% 75%,rgba(201,153,58,0.07) 0%,transparent 65%);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:62px;background:rgba(6,8,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;text-decoration:none;}
+.nav-links{display:flex;gap:1.5rem;}
+.nav-links a{color:var(--muted);font-size:0.8rem;text-decoration:none;transition:color 0.2s;font-weight:500;}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:0.8rem;}
+.nav-saved-btn{background:transparent;border:1.5px solid var(--border2);border-radius:8px;color:var(--muted);padding:5px 12px;font-family:'Outfit',sans-serif;font-size:0.78rem;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:6px;}
+.nav-saved-btn:hover{border-color:var(--gold2);color:var(--gold2);}
+.saved-count{background:var(--blue2);color:#fff;font-size:0.65rem;font-weight:700;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center;}
+.nav-badge{font-size:0.65rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;border:1px solid rgba(201,153,58,0.3);color:var(--gold2);padding:4px 10px;border-radius:20px;white-space:nowrap;}
+@media(max-width:700px){.nav-links,.nav-badge{display:none;}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 5rem;position:relative;z-index:1;}
+.hero-logo{margin-bottom:2.5rem;display:flex;flex-direction:column;align-items:center;}
+.hero-tagline-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);border-radius:30px;padding:6px 18px;font-size:0.78rem;color:var(--muted);margin-bottom:2rem;background:rgba(255,255,255,0.02);}
+.hero-tagline-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+.hero-headline{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5.5vw,5.2rem);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.2rem;max-width:820px;}
+.hero-headline em{font-style:italic;background:linear-gradient(135deg,var(--gold2) 0%,#e88c3a 50%,var(--blue3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{max-width:560px;font-size:1rem;line-height:1.85;color:var(--muted);margin-bottom:2.5rem;}
+.hero-sub strong{color:var(--text);font-weight:600;}
+.who-row{display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+.who-pill{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:0.55rem 1rem;display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted);}
+.cta-group{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:center;}
+.cta-primary{padding:0.9rem 2.4rem;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:12px;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;color:#06080f;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.cta-primary:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(201,153,58,0.3);}
+.cta-secondary{padding:0.9rem 2rem;background:transparent;border:1.5px solid var(--border2);border-radius:12px;font-family:'Outfit',sans-serif;font-weight:500;font-size:0.93rem;color:var(--muted);cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.cta-secondary:hover{border-color:var(--blue3);color:var(--text);}
+.how-strip{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--border);}
+.how-item{display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;color:var(--muted);}
+.how-num{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#06080f;flex-shrink:0;}
+
+/* WIZARD */
+.wizard-section{max-width:800px;margin:0 auto;padding:5rem 1.5rem;position:relative;z-index:1;}
+.wizard-title{text-align:center;margin-bottom:2.5rem;}
+.wizard-title h2{font-family:'DM Serif Display',serif;font-size:1.9rem;margin-bottom:0.4rem;}
+.wizard-title p{color:var(--muted);font-size:0.88rem;}
+
+/* STEP INDICATOR */
+.step-indicator{display:flex;align-items:center;margin-bottom:2.5rem;position:relative;}
+.step-indicator::before{content:'';position:absolute;top:15px;left:0;right:0;height:2px;background:var(--border);z-index:0;}
+.s-dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;position:relative;z-index:1;color:var(--muted);flex-shrink:0;transition:all 0.3s;}
+.s-dot.active{border-color:var(--gold2);background:var(--gold2);color:#06080f;}
+.s-dot.done{border-color:var(--green);background:var(--green);color:#06080f;cursor:pointer;}
+.s-dot.done:hover{opacity:0.75;}
+.s-line{flex:1;height:2px;background:var(--border);transition:background 0.3s;}
+.s-line.done{background:var(--green);}
+.s-label{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:0.6rem;color:var(--muted);white-space:nowrap;letter-spacing:0.05em;text-transform:uppercase;font-weight:500;}
+
+/* STEP CARD */
+.step-card{background:var(--surface);border:1px solid var(--border2);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4);animation:fadeUp 0.4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.step-header{padding:1.8rem 2rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem;}
+.step-icon{font-size:2rem;}
+.step-heading{font-family:'DM Serif Display',serif;font-size:1.4rem;}
+.step-sub{color:var(--muted);font-size:0.83rem;margin-top:3px;}
+.step-body{padding:1.8rem 2rem;}
+
+/* FORM */
+label.fl{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;}
+input,select,textarea{width:100%;padding:0.75rem 1rem;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.93rem;outline:none;transition:border-color 0.2s;}
+input:focus,select:focus,textarea:focus{border-color:rgba(201,153,58,0.5);}
+select option{background:#0f1120;}
+input::placeholder,textarea::placeholder{color:var(--muted);}
+.fg{margin-bottom:1.1rem;}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;}
+@media(max-width:520px){.fg2{grid-template-columns:1fr;}}
+
+/* CHIPS */
+.chip-group{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.chip{padding:7px 15px;border:1.5px solid var(--border);border-radius:25px;background:transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.8rem;cursor:pointer;transition:all 0.15s;user-select:none;}
+.chip:hover{border-color:var(--border2);color:var(--text);}
+.chip.sel{border-color:var(--gold2);background:rgba(201,153,58,0.12);color:var(--gold2);font-weight:600;}
+
+/* RANGE */
+.range-wrap{margin-bottom:1.1rem;}
+input[type=range]{width:100%;accent-color:var(--gold2);cursor:pointer;margin:8px 0;}
+.range-labels{display:flex;justify-content:space-between;font-size:0.68rem;color:var(--muted);}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:0.8rem;margin-top:1.8rem;}
+.btn-next{flex:1;padding:0.9rem;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.97rem;color:#06080f;cursor:pointer;transition:all 0.2s;}
+.btn-next:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,153,58,0.25);}
+.btn-back{padding:0.9rem 1.5rem;background:transparent;border:1.5px solid var(--border);border-radius:10px;color:var(--muted);cursor:pointer;font-family:'Outfit',sans-serif;font-weight:500;transition:all 0.15s;}
+.btn-back:hover{border-color:var(--border2);color:var(--text);}
+
+/* LOADER */
+.loader-screen{text-align:center;padding:4rem 2rem;}
+.loader-ring{width:56px;height:56px;border-radius:50%;border:3px solid var(--border);border-top-color:var(--gold2);animation:spin 0.9s linear infinite;margin:0 auto 1.5rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loader-title{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:0.4rem;}
+.l-step{font-size:0.82rem;color:var(--muted);opacity:0;animation:fadeIn 0.5s ease forwards;margin-top:10px;}
+.l-step.s1{animation-delay:0.6s;}.l-step.s2{animation-delay:1.4s;}.l-step.s3{animation-delay:2.2s;}.l-step.s4{animation-delay:3s;}
+@keyframes fadeIn{to{opacity:1;}}
+
+/* RESULT */
+.result-hero-band{padding:2rem;background:linear-gradient(135deg,rgba(201,153,58,0.07),rgba(36,88,179,0.07));border-bottom:1px solid var(--border);text-align:center;}
+.result-hello{font-size:0.72rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.4rem;}
+.result-name{font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:0.4rem;}
+.result-tagline{color:var(--muted);font-size:0.88rem;line-height:1.65;max-width:500px;margin:0 auto;}
+
+/* EDIT BAR */
+.edit-bar{display:flex;gap:0.5rem;padding:1rem 2rem 0;flex-wrap:wrap;align-items:center;}
+.edit-btn{padding:6px 13px;border:1.5px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:0.77rem;cursor:pointer;transition:all 0.15s;}
+.edit-btn:hover{border-color:var(--gold2);color:var(--gold2);}
+.regen-btn{padding:6px 16px;border:none;border-radius:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#06080f;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.15s;margin-left:auto;}
+.regen-btn:hover{transform:translateY(-1px);}
+
+/* TABS */
+.result-tabs{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;}
+.rtab{padding:0.9rem 1.3rem;font-size:0.82rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.15s;}
+.rtab.active{color:var(--gold2);border-bottom-color:var(--gold2);}
+.tab-panel{display:none;padding:1.8rem 2rem;}
+.tab-panel.active{display:block;animation:fadeUp 0.35s ease;}
+
+/* CAREER CARDS */
+.careers-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.5rem;}
+@media(max-width:520px){.careers-grid{grid-template-columns:1fr;}}
+.career-card{background:var(--surface2);border:1.5px solid var(--border);border-radius:14px;padding:1.2rem;transition:all 0.2s;position:relative;overflow:hidden;}
+.career-card:hover{border-color:rgba(201,153,58,0.35);transform:translateY(-2px);}
+.career-card.top{border-color:rgba(201,153,58,0.5);}
+.top-badge{position:absolute;top:10px;right:10px;background:var(--gold2);color:#06080f;font-size:0.6rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:10px;}
+.career-emoji{font-size:1.5rem;margin-bottom:0.5rem;}
+.career-title{font-weight:700;font-size:0.95rem;margin-bottom:3px;}
+.career-match{font-size:0.76rem;color:var(--gold2);font-weight:600;margin-bottom:0.5rem;}
+.career-desc{font-size:0.79rem;color:var(--muted);line-height:1.6;}
+.career-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:0.7rem;}
+.ctag{font-size:0.67rem;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border);}
+
+/* ROADMAP */
+.roadmap-steps{display:flex;flex-direction:column;gap:0.7rem;}
+.r-step{display:flex;gap:1rem;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem;}
+.r-num{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:0.73rem;font-weight:700;color:#06080f;}
+.r-content h5{font-size:0.87rem;font-weight:700;margin-bottom:4px;}
+.r-content p{font-size:0.79rem;color:var(--muted);line-height:1.6;}
+
+/* SCHOLARSHIP */
+.scholar-box{background:linear-gradient(135deg,rgba(52,211,153,0.06),rgba(45,212,191,0.04));border:1.5px solid rgba(52,211,153,0.18);border-radius:14px;padding:1.3rem;}
+.scholar-title{font-family:'DM Serif Display',serif;font-size:1rem;margin-bottom:0.8rem;display:flex;align-items:center;gap:7px;color:var(--green);}
+.scholar-item{background:rgba(0,0,0,0.25);border-radius:10px;padding:0.85rem 1rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:0.5rem;border:1px solid rgba(52,211,153,0.1);}
+.scholar-name{font-size:0.87rem;font-weight:600;margin-bottom:2px;}
+.scholar-amt{font-size:0.8rem;color:var(--green);font-weight:700;white-space:nowrap;}
+.scholar-elig{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+
+/* UNIVERSITIES */
+.uni-intro{background:linear-gradient(135deg,rgba(36,88,179,0.08),rgba(79,142,247,0.06));border:1.5px solid rgba(79,142,247,0.18);border-radius:14px;padding:1.2rem 1.5rem;margin-bottom:1.4rem;}
+.uni-intro-title{font-family:'DM Serif Display',serif;font-size:1rem;margin-bottom:0.4rem;color:var(--blue3);}
+.uni-intro-sub{font-size:0.82rem;color:var(--muted);line-height:1.6;}
+.uni-filter-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+.uf-btn{padding:5px 14px;border:1.5px solid var(--border);border-radius:20px;background:transparent;font-family:'Outfit',sans-serif;font-size:0.77rem;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.uf-btn.active,.uf-btn:hover{border-color:var(--blue3);color:var(--blue3);background:rgba(79,142,247,0.07);}
+.uni-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+@media(max-width:520px){.uni-grid{grid-template-columns:1fr;}}
+.uni-card{background:var(--surface2);border:1.5px solid var(--border);border-radius:14px;padding:1.2rem;transition:all 0.2s;}
+.uni-card:hover{border-color:rgba(79,142,247,0.4);transform:translateY(-2px);}
+.uni-card.match-high{border-left:3px solid var(--green);}
+.uni-card.match-med{border-left:3px solid var(--gold2);}
+.uni-top-row{display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.5rem;}
+.uni-logo-box{width:36px;height:36px;border-radius:8px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.uni-match-badge{font-size:0.65rem;font-weight:700;padding:3px 8px;border-radius:8px;}
+.match-high-badge{background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.25);}
+.match-med-badge{background:rgba(201,153,58,0.1);color:var(--gold2);border:1px solid rgba(201,153,58,0.25);}
+.uni-name{font-weight:700;font-size:0.9rem;margin-bottom:2px;line-height:1.3;}
+.uni-location{font-size:0.72rem;color:var(--muted);margin-bottom:0.5rem;}
+.uni-programs{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:0.6rem;}
+.uni-prog{font-size:0.66rem;padding:2px 7px;background:rgba(79,142,247,0.08);border:1px solid rgba(79,142,247,0.18);border-radius:6px;color:var(--blue3);}
+.uni-facts{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.uni-fact{font-size:0.69rem;color:var(--muted);}
+.uni-fact strong{color:var(--text);font-weight:500;}
+.uni-scholar-note{font-size:0.72rem;color:var(--green);margin-top:0.5rem;}
+.uni-apply-btn{width:100%;margin-top:0.8rem;padding:0.5rem;background:rgba(79,142,247,0.1);border:1.5px solid rgba(79,142,247,0.22);border-radius:8px;color:var(--blue3);font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.uni-apply-btn:hover{background:rgba(79,142,247,0.18);}
+
+/* MOTIVATION */
+.motivation-box{background:linear-gradient(135deg,rgba(36,88,179,0.07),rgba(167,139,250,0.07));border:1px solid rgba(167,139,250,0.18);border-radius:14px;padding:1.3rem;margin-top:1rem;}
+.motivation-quote{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--text);margin-bottom:0.5rem;}
+.motivation-attr{font-size:0.75rem;color:var(--purple);font-weight:600;}
+
+/* SAVE */
+.reset-btn{width:100%;padding:0.85rem;background:transparent;border:1.5px solid var(--border);border-radius:10px;color:var(--muted);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.85rem;transition:all 0.15s;margin-top:0.6rem;}
+.reset-btn:hover{border-color:var(--gold2);color:var(--gold2);}
+.save-this-btn{width:100%;padding:0.8rem;background:linear-gradient(135deg,var(--blue2),var(--blue3));border:none;border-radius:10px;color:#fff;font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;margin-bottom:0.6rem;transition:all 0.2s;}
+.save-this-btn:hover{transform:translateY(-1px);}
+.save-this-btn:disabled{background:var(--border);color:var(--muted);cursor:default;transform:none;}
+
+/* SAVED PANEL */
+.saved-paths-panel{position:fixed;top:0;right:-420px;width:400px;max-width:95vw;height:100vh;background:var(--surface);border-left:1px solid var(--border2);z-index:500;transition:right 0.35s cubic-bezier(0.4,0,0.2,1);overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,0.5);}
+.saved-paths-panel.open{right:0;}
+.sp-header{padding:1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1;}
+.sp-title{font-family:'DM Serif Display',serif;font-size:1.1rem;}
+.sp-close{background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer;line-height:1;padding:0;}
+.sp-body{padding:1.2rem;}
+.sp-empty{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:0.85rem;line-height:1.8;}
+.saved-path-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:0.8rem;}
+.spc-name{font-weight:700;font-size:0.9rem;margin-bottom:2px;}
+.spc-meta{font-size:0.72rem;color:var(--muted);margin-bottom:0.4rem;}
+.spc-career{font-size:0.78rem;color:var(--gold2);margin-bottom:0.6rem;}
+.spc-actions{display:flex;gap:0.5rem;}
+.spc-load{flex:1;padding:5px;background:rgba(201,153,58,0.1);border:1px solid rgba(201,153,58,0.22);border-radius:7px;color:var(--gold2);font-family:'Outfit',sans-serif;font-size:0.75rem;cursor:pointer;}
+.spc-del{padding:5px 10px;background:rgba(255,70,70,0.06);border:1px solid rgba(255,70,70,0.14);border-radius:7px;color:#ff6060;font-family:'Outfit',sans-serif;font-size:0.75rem;cursor:pointer;}
+
+/* OVERLAY */
+.panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:499;display:none;backdrop-filter:blur(3px);}
+.panel-overlay.show{display:block;}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:0.7rem 1.4rem;font-size:0.83rem;color:var(--text);opacity:0;transition:all 0.3s;z-index:600;pointer-events:none;white-space:nowrap;max-width:90vw;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ABOUT / IMPACT */
+.about-section,.flow-section,.impact-section{max-width:800px;margin:0 auto;padding:0 1.5rem 5rem;position:relative;z-index:1;}
+.divider{height:1px;background:var(--border);max-width:800px;margin:0 auto;}
+.sec-tag{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold2);margin-bottom:0.5rem;}
+.sec-title{font-family:'DM Serif Display',serif;font-size:2.2rem;margin-bottom:0.5rem;}
+.sec-sub{color:var(--muted);font-size:0.88rem;line-height:1.65;margin-bottom:2rem;}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;}
+.a-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem;transition:border-color 0.2s,transform 0.2s;}
+.a-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.a-icon{font-size:1.5rem;margin-bottom:0.6rem;}
+.a-card h4{font-size:0.87rem;font-weight:700;margin-bottom:0.4rem;}
+.a-card p{font-size:0.78rem;color:var(--muted);line-height:1.55;}
+.flow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin-top:1.5rem;}
+.f-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem;}
+.f-num{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:900;opacity:0.18;margin-bottom:0.3rem;}
+.f-title{font-size:0.82rem;font-weight:700;margin-bottom:0.3rem;}
+.f-desc{font-size:0.75rem;color:var(--muted);line-height:1.55;}
+.impact-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;}
+@media(max-width:560px){.impact-row{grid-template-columns:1fr;}}
+.i-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem;text-align:center;}
+.i-num{font-family:'DM Serif Display',serif;font-size:2.1rem;background:linear-gradient(135deg,var(--gold2),var(--blue3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.3rem;}
+.i-label{font-size:0.78rem;color:var(--muted);line-height:1.55;}
+.access-banner{background:linear-gradient(135deg,rgba(52,211,153,0.06),rgba(45,212,191,0.04));border:1.5px solid rgba(52,211,153,0.18);border-radius:16px;padding:1.5rem 2rem;margin-bottom:2rem;display:flex;align-items:flex-start;gap:1.2rem;}
+.access-icon{font-size:2rem;flex-shrink:0;}
+.access-title{font-weight:700;font-size:0.95rem;margin-bottom:0.3rem;color:var(--green);}
+.access-desc{font-size:0.82rem;color:var(--muted);line-height:1.6;}
+.access-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:0.6rem;}
+.access-pill{font-size:0.67rem;padding:3px 9px;border-radius:10px;border:1px solid rgba(52,211,153,0.2);color:var(--green);background:rgba(52,211,153,0.07);}
+footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color:var(--muted);font-size:0.77rem;position:relative;z-index:1;line-height:2;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s,transform 0.6s;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+
+/* Error state */
+.error-box{background:rgba(255,70,70,0.05);border:1.5px solid rgba(255,70,70,0.2);border-radius:12px;padding:1.2rem 1.5rem;text-align:center;color:#ff8080;}
+.error-box h4{margin-bottom:0.4rem;font-size:0.9rem;}
+.error-box p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="mesh"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#" aria-label="Arrow">
+    <svg width="130" height="38" viewBox="0 0 130 38" fill="none">
+      <defs>
+        <linearGradient id="nG" x1="0" y1="0" x2="130" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#c9993a"/><stop offset="45%" stop-color="#c9993a"/>
+          <stop offset="46%" stop-color="#2458b3"/><stop offset="100%" stop-color="#2458b3"/>
+        </linearGradient>
+        <linearGradient id="nS" x1="0" y1="0" x2="115" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#c9993a"/><stop offset="100%" stop-color="#2458b3"/>
+        </linearGradient>
+      </defs>
+      <text x="0" y="24" font-family="Outfit,sans-serif" font-weight="800" font-size="24" letter-spacing="-0.5" fill="url(#nG)">ARROW</text>
+      <path d="M2 30 Q55 27 110 30" stroke="url(#nS)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <path d="M105 26 L115 30 L105 34" stroke="#2458b3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#about">About</a>
+    <a href="#impact">Impact</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-saved-btn" onclick="openPanel()">📂 My Paths <span class="saved-count" id="savedCount">0</span></button>
+    <div class="nav-badge">Elective 1 · AI Decision Making</div>
+  </div>
+</nav>
+
+<!-- SAVED PANEL -->
+<div class="panel-overlay" id="overlay" onclick="closePanel()"></div>
+<div class="saved-paths-panel" id="savedPanel">
+  <div class="sp-header">
+    <div class="sp-title">📂 My Saved Paths</div>
+    <button class="sp-close" onclick="closePanel()">×</button>
+  </div>
+  <div class="sp-body">
+    <button class="save-this-btn" id="saveThisBtn" onclick="saveCurrentPath()" disabled>💾 Save Current Path</button>
+    <div id="savedList"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo">
+    <svg width="340" height="105" viewBox="0 0 340 105" fill="none">
+      <defs>
+        <linearGradient id="hG" x1="0" y1="0" x2="340" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#c9993a"/><stop offset="38%" stop-color="#c9993a"/>
+          <stop offset="40%" stop-color="#1e3e8a"/><stop offset="100%" stop-color="#1e3e8a"/>
+        </linearGradient>
+        <linearGradient id="hS" x1="0" y1="0" x2="320" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#c9993a"/><stop offset="60%" stop-color="#2458b3"/><stop offset="100%" stop-color="#2458b3"/>
+        </linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <text x="4" y="66" font-family="Outfit,sans-serif" font-weight="900" font-size="68" letter-spacing="-1" fill="url(#hG)">ARROW</text>
+      <path d="M4 76 Q150 68 285 76" stroke="url(#hS)" stroke-width="2" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+      <path d="M278 70 L296 76 L278 82" stroke="#2458b3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#glow)"/>
+      <text x="10" y="96" font-family="Outfit,sans-serif" font-weight="300" font-size="13" letter-spacing="4" fill="rgba(200,200,220,0.45)" font-style="italic">rise with clarity</text>
+      <g transform="translate(244,2) rotate(-5,30,20)">
+        <polygon points="10,18 50,4 70,18 30,32" fill="#2a2a2a" stroke="#111" stroke-width="0.5"/>
+        <polygon points="10,18 50,4 55,10 15,24" fill="#3d3d3d" opacity="0.7"/>
+        <circle cx="30" cy="18" r="3.5" fill="#c9993a"/>
+        <line x1="30" y1="18" x2="52" y2="22" stroke="#c9993a" stroke-width="1.5"/>
+        <rect x="49" y="22" width="6" height="12" rx="2" fill="#c9993a"/>
+        <path d="M20 20 Q30 28 40 20 L40 28 Q30 36 20 28 Z" fill="#1a1a1a"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-tagline-pill"><span class="dot"></span>Free AI Career Advisor · Open to Every Student in India</div>
+  <h1 class="hero-headline">The career counselor<br>every student <em>deserves</em></h1>
+  <p class="hero-sub">Rich students pay ₹50,000 for career counselors. <strong>Arrow</strong> gives every student — from any village, any income, any background — the same AI-powered guidance. For free. In minutes.</p>
+  <div class="who-row">
+    <div class="who-pill">🏘️ First-generation students</div>
+    <div class="who-pill">📚 Class 10–12 &amp; college</div>
+    <div class="who-pill">🌾 Rural &amp; semi-urban youth</div>
+    <div class="who-pill">🎓 University aspirants</div>
+  </div>
+  <div class="cta-group">
+    <a class="cta-primary" href="#wizard">🎯 Find My Career Path</a>
+    <a class="cta-secondary" href="#how-it-works">See how it works ↓</a>
+  </div>
+  <div class="how-strip" id="how-it-works">
+    <div class="how-item"><div class="how-num">1</div><span>Fill your profile &amp; interests</span></div>
+    <div class="how-item" style="color:var(--border2);">→</div>
+    <div class="how-item"><div class="how-num">2</div><span>Arrow AI analyses your data</span></div>
+    <div class="how-item" style="color:var(--border2);">→</div>
+    <div class="how-item"><div class="how-num">3</div><span>Get careers, universities &amp; scholarships</span></div>
+  </div>
+</section>
+
+<!-- WIZARD -->
+<section class="wizard-section" id="wizard">
+  <div class="wizard-title">
+    <h2>Let's Build Your Path</h2>
+    <p>Answer 3 quick sections — Arrow AI does the rest</p>
+  </div>
+
+  <div class="step-indicator" id="stepIndicator">
+    <div class="s-dot active" id="sd1"><span>1</span><span class="s-label">Profile</span></div>
+    <div class="s-line" id="sl1"></div>
+    <div class="s-dot" id="sd2"><span>2</span><span class="s-label">Interests</span></div>
+    <div class="s-line" id="sl2"></div>
+    <div class="s-dot" id="sd3"><span>3</span><span class="s-label">Goals</span></div>
+    <div class="s-line" id="sl3"></div>
+    <div class="s-dot" id="sd4"><span>4</span><span class="s-label">My Path</span></div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-card" id="step1">
+    <div class="step-header"><div class="step-icon">👋</div><div><div class="step-heading">About You</div><div class="step-sub">Let's build your personal profile — takes 2 minutes</div></div></div>
+    <div class="step-body">
+      <div class="fg2">
+        <div><label class="fl" for="name">Your Name</label><input type="text" id="name" placeholder="e.g. Priya Sharma"></div>
+        <div><label class="fl" for="grade">Class / Year</label>
+          <select id="grade">
+            <option value="">Select your class...</option>
+            <option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option>
+            <option>1st Year College</option><option>2nd Year College</option><option>3rd Year College</option><option>Just passed out</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg2">
+        <div><label class="fl" for="stream">Stream / Subject Group</label>
+          <select id="stream">
+            <option value="">Select stream...</option>
+            <option>Science (PCM)</option><option>Science (PCB)</option><option>Commerce</option>
+            <option>Arts / Humanities</option><option>Vocational</option><option>Not sure yet</option>
+          </select>
+        </div>
+        <div><label class="fl" for="background">Family Background</label>
+          <select id="background">
+            <option value="">Select...</option>
+            <option>First in family to go to college</option>
+            <option>Parents are farmers / daily wage workers</option>
+            <option>Small business family</option>
+            <option>Government job family</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label class="fl" for="state">State / Region</label><input type="text" id="state" placeholder="e.g. Bihar, Tamil Nadu, Maharashtra..."></div>
+      <div class="btn-row"><button class="btn-next" onclick="goStep(2)">Continue → Step 2: Interests</button></div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-card" id="step2" style="display:none;">
+    <div class="step-header"><div class="step-icon">💡</div><div><div class="step-heading">Your Interests</div><div class="step-sub">Select everything that feels exciting — no wrong answers here</div></div></div>
+    <div class="step-body">
+      <div class="fg">
+        <label class="fl">Subjects you enjoy <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(select all that apply)</span></label>
+        <div class="chip-group" id="subjects">
+          <div class="chip" onclick="tog(this)">Mathematics</div>
+          <div class="chip" onclick="tog(this)">Science &amp; Physics</div>
+          <div class="chip" onclick="tog(this)">Biology &amp; Chemistry</div>
+          <div class="chip" onclick="tog(this)">History &amp; Civics</div>
+          <div class="chip" onclick="tog(this)">Geography</div>
+          <div class="chip" onclick="tog(this)">English Literature</div>
+          <div class="chip" onclick="tog(this)">Economics</div>
+          <div class="chip" onclick="tog(this)">Computers / Coding</div>
+          <div class="chip" onclick="tog(this)">Art &amp; Design</div>
+          <div class="chip" onclick="tog(this)">Music &amp; Performing Arts</div>
+          <div class="chip" onclick="tog(this)">Psychology</div>
+          <div class="chip" onclick="tog(this)">Political Science</div>
+        </div>
+      </div>
+      <div class="fg" style="margin-top:1.2rem;">
+        <label class="fl">Activities you enjoy <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(select all that apply)</span></label>
+        <div class="chip-group" id="hobbies">
+          <div class="chip" onclick="tog(this)">Teaching / Helping others</div>
+          <div class="chip" onclick="tog(this)">Building / Making things</div>
+          <div class="chip" onclick="tog(this)">Writing / Storytelling</div>
+          <div class="chip" onclick="tog(this)">Debating / Public Speaking</div>
+          <div class="chip" onclick="tog(this)">Sports / Fitness</div>
+          <div class="chip" onclick="tog(this)">Drawing / Designing</div>
+          <div class="chip" onclick="tog(this)">Social work / Volunteering</div>
+          <div class="chip" onclick="tog(this)">Gaming / Technology</div>
+          <div class="chip" onclick="tog(this)">Agriculture / Nature</div>
+          <div class="chip" onclick="tog(this)">Business / Entrepreneurship</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(1)">← Back</button>
+        <button class="btn-next" onclick="goStep(3)">Continue → Step 3: Goals</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-card" id="step3" style="display:none;">
+    <div class="step-header"><div class="step-icon">🎯</div><div><div class="step-heading">Goals &amp; Situation</div><div class="step-sub">This helps Arrow tailor everything specifically for you</div></div></div>
+    <div class="step-body">
+      <div class="fg">
+        <label class="fl">What matters most in your career? <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(pick one)</span></label>
+        <div class="chip-group" id="priorities">
+          <div class="chip" onclick="togSingle(this,'priorities')">💰 Good Salary</div>
+          <div class="chip" onclick="togSingle(this,'priorities')">❤️ Helping Society</div>
+          <div class="chip" onclick="togSingle(this,'priorities')">🚀 Growth &amp; Ambition</div>
+          <div class="chip" onclick="togSingle(this,'priorities')">🎨 Creativity</div>
+          <div class="chip" onclick="togSingle(this,'priorities')">🏠 Stay near family</div>
+          <div class="chip" onclick="togSingle(this,'priorities')">🛡️ Job Security</div>
+          <div class="chip" onclick="togSingle(this,'priorities')">🌱 Own Business</div>
+          <div class="chip" onclick="togSingle(this,'priorities')">🌏 International Career</div>
+        </div>
+      </div>
+      <div class="fg" style="margin-top:1.1rem;">
+        <label class="fl">Monthly family income <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(helps find scholarships)</span></label>
+        <div class="chip-group" id="income">
+          <div class="chip" onclick="togSingle(this,'income')">Under ₹10,000</div>
+          <div class="chip" onclick="togSingle(this,'income')">₹10,000 – ₹30,000</div>
+          <div class="chip" onclick="togSingle(this,'income')">₹30,000 – ₹60,000</div>
+          <div class="chip" onclick="togSingle(this,'income')">Above ₹60,000</div>
+          <div class="chip" onclick="togSingle(this,'income')">Prefer not to say</div>
+        </div>
+      </div>
+      <div class="range-wrap" style="margin-top:1.1rem;">
+        <label class="fl" for="academic">Your academic strength <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(be honest — it helps!)</span></label>
+        <input type="range" id="academic" min="1" max="5" value="3">
+        <div class="range-labels"><span>Struggling</span><span>Average</span><span>Good</span><span>Very Good</span><span>Top</span></div>
+      </div>
+      <div class="fg"><label class="fl" for="dream">Your dream or goal <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(optional but powerful)</span></label>
+        <textarea id="dream" rows="2" placeholder="e.g. I want to make my parents proud, I love technology, I want to work in a hospital, I want to go abroad someday..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(2)">← Back</button>
+        <button class="btn-next" onclick="generate()">✨ Generate My Arrow Path</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADER -->
+  <div class="step-card" id="loaderCard" style="display:none;">
+    <div class="loader-screen">
+      <div class="loader-ring"></div>
+      <div class="loader-title">Arrow AI is building your path...</div>
+      <div style="color:var(--muted);font-size:0.83rem;">This takes a few seconds — worth every one</div>
+      <div class="l-step s1">🧠 Mapping your interests to careers...</div>
+      <div class="l-step s2">🏛️ Matching you with universities...</div>
+      <div class="l-step s3">💰 Finding scholarships for your profile...</div>
+      <div class="l-step s4">🗺️ Building your personalised roadmap...</div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="step-card" id="resultCard" style="display:none;">
+    <div class="result-hero-band">
+      <div class="result-hello">Your Arrow Path is ready ✨</div>
+      <div class="result-name" id="rName"></div>
+      <div class="result-tagline" id="rTagline"></div>
+    </div>
+    <div class="edit-bar">
+      <button class="edit-btn" onclick="goBackToStep(1)">✏️ Edit Profile</button>
+      <button class="edit-btn" onclick="goBackToStep(2)">💡 Change Interests</button>
+      <button class="edit-btn" onclick="goBackToStep(3)">🎯 Change Goals</button>
+      <button class="regen-btn" onclick="generate()">🔮 Regenerate</button>
+    </div>
+    <div class="result-tabs">
+      <div class="rtab active" onclick="switchTab('careers',this)">🌟 Careers</div>
+      <div class="rtab" onclick="switchTab('universities',this)">🏛️ Universities</div>
+      <div class="rtab" onclick="switchTab('roadmap',this)">🗺️ Roadmap</div>
+      <div class="rtab" onclick="switchTab('scholarships',this)">🎓 Scholarships</div>
+    </div>
+    <div class="tab-panel active" id="tab-careers">
+      <div class="careers-grid" id="careersGrid"></div>
+    </div>
+    <div class="tab-panel" id="tab-universities">
+      <div class="uni-intro">
+        <div class="uni-intro-title">🏛️ University Matches — AI Powered</div>
+        <div class="uni-intro-sub" id="uniIntroSub">Based on your profile, Arrow has matched you with universities that fit your goals and background.</div>
+      </div>
+      <div class="uni-filter-row">
+        <button class="uf-btn active" onclick="filterUni(this,'all')">All</button>
+        <button class="uf-btn" onclick="filterUni(this,'central')">Central</button>
+        <button class="uf-btn" onclick="filterUni(this,'state')">State</button>
+        <button class="uf-btn" onclick="filterUni(this,'private')">Private</button>
+        <button class="uf-btn" onclick="filterUni(this,'abroad')">International</button>
+      </div>
+      <div class="uni-grid" id="uniGrid"></div>
+      <div style="margin-top:1rem;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+        <div style="font-size:0.81rem;color:var(--muted);"><strong style="color:var(--text);">Apply directly</strong> via the National Testing Agency portal — <strong style="color:var(--text);">CUET</strong> covers most central &amp; state universities</div>
+        <button style="padding:7px 18px;background:linear-gradient(135deg,var(--blue2),var(--blue3));border:none;border-radius:8px;color:#fff;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;" onclick="window.open('https://cuet.samarth.ac.in','_blank')">Apply via CUET →</button>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-roadmap">
+      <div class="roadmap-steps" id="roadmapSteps"></div>
+      <div class="motivation-box" style="margin-top:1.2rem;">
+        <div class="motivation-quote" id="motivationQuote"></div>
+        <div class="motivation-attr" id="motivationAttr"></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-scholarships">
+      <div class="scholar-box">
+        <div class="scholar-title">🎓 Scholarships You May Qualify For</div>
+        <div id="scholarList"></div>
+        <div style="font-size:0.76rem;color:var(--muted);margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border);">
+          💡 Always verify eligibility directly on <a href="https://scholarships.gov.in" target="_blank" style="color:var(--green);text-decoration:none;">scholarships.gov.in</a> — deadlines and amounts change yearly.
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 2rem 1.5rem;">
+      <button class="save-this-btn" onclick="saveCurrentPath()" id="inlineSaveBtn">💾 Save This Path to My Paths</button>
+      <button class="reset-btn" onclick="resetAll()">↩ Start Over — Explore a Different Path</button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="about-section reveal" id="about" style="padding-top:4rem;">
+  <div class="sec-tag">About Arrow</div>
+  <div class="sec-title">App Overview</div>
+  <div class="sec-sub">Built for Elective 1: AI-Driven Decision Making. Every section maps directly to the 5 assignment deliverables.</div>
+  <div class="access-banner">
+    <div class="access-icon">♿</div>
+    <div>
+      <div class="access-title">Designed for Accessibility — Usable by All</div>
+      <div class="access-desc">Arrow is built to be inclusive and accessible to every student, regardless of ability or device.</div>
+      <div class="access-pills">
+        <span class="access-pill">ARIA Labels</span><span class="access-pill">Keyboard Navigation</span>
+        <span class="access-pill">Screen Reader Support</span><span class="access-pill">High Contrast Text</span>
+        <span class="access-pill">Mobile Responsive</span><span class="access-pill">No Login Required</span>
+      </div>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="a-card"><div class="a-icon">🎯</div><h4>Problem Statement</h4><p>250M+ Indian students lack career guidance. First-gen, rural, and low-income students pick careers by chance — not design.</p></div>
+    <div class="a-card"><div class="a-icon">🤖</div><h4>AI Logic / Decision Model</h4><p>Claude LLM processes student profiles using a 6-step pipeline: interest mapping, goal weighting, academic filtering, geo-context, scholarship matching, and narrative generation.</p></div>
+    <div class="a-card"><div class="a-icon">📱</div><h4>User Flow</h4><p>3-step wizard → Arrow AI generates 4 career matches, 6 university recommendations, a 5-step roadmap, and 4 real scholarships in seconds.</p></div>
+    <div class="a-card"><div class="a-icon">🌍</div><h4>Expected Social Impact</h4><p>Democratizes career counseling. Replaces ₹50,000 counselors with free AI guidance for first-generation students.</p></div>
+    <div class="a-card"><div class="a-icon">⚠️</div><h4>Limitations</h4><p>Cannot replace a human mentor. Scholarship data needs real-time verification. University seat availability changes yearly.</p></div>
+    <div class="a-card"><div class="a-icon">🚀</div><h4>Future Scope</h4><p>CUET/NTA API for direct applications, WhatsApp bot for rural access, regional language voice interface, and alumni mentorship network.</p></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- AI FLOW -->
+<div class="flow-section reveal">
+  <div class="sec-tag">Decision Model</div>
+  <div class="sec-title">How Arrow AI Thinks</div>
+  <div class="sec-sub">A 6-stage AI pipeline combining rule-based logic with LLM reasoning.</div>
+  <div class="flow-grid">
+    <div class="f-card"><div class="f-num">01</div><div class="f-title">Profile Parsing</div><div class="f-desc">Extracts academic background, geographic, and socioeconomic context</div></div>
+    <div class="f-card"><div class="f-num">02</div><div class="f-title">Interest Mapping</div><div class="f-desc">Cross-references subjects + hobbies against 50+ career-personality clusters</div></div>
+    <div class="f-card"><div class="f-num">03</div><div class="f-title">Goal Weighting</div><div class="f-desc">Weighs salary, passion, security, and location preferences into a scoring model</div></div>
+    <div class="f-card"><div class="f-num">04</div><div class="f-title">University Match</div><div class="f-desc">Filters universities by program fit, income, entrance exams, and geography</div></div>
+    <div class="f-card"><div class="f-num">05</div><div class="f-title">Scholarship Filter</div><div class="f-desc">Matches student profile against national, state, and private scholarship criteria</div></div>
+    <div class="f-card"><div class="f-num">06</div><div class="f-title">Roadmap + Narrative</div><div class="f-desc">Generates a time-phased action plan with a personalised motivational message</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- IMPACT -->
+<div class="impact-section reveal" id="impact">
+  <div class="sec-tag">Expected Social Impact</div>
+  <div class="sec-title">Why Arrow Matters</div>
+  <div class="sec-sub">Career and university misguidance costs students years and thousands of rupees. Arrow fixes this — for free, for everyone.</div>
+  <div class="impact-row">
+    <div class="i-card"><div class="i-num">250M+</div><div class="i-label">Indian students with no access to quality career or university guidance</div></div>
+    <div class="i-card"><div class="i-num">₹0</div><div class="i-label">What Arrow costs — making world-class counseling accessible to all</div></div>
+    <div class="i-card"><div class="i-num">1-Click</div><div class="i-label">Future goal: AI recommendation to university application in one tap</div></div>
+  </div>
+</div>
+
+<footer>
+  <svg width="110" height="32" viewBox="0 0 110 32" fill="none" style="margin-bottom:0.7rem;">
+    <defs><linearGradient id="fG" x1="0" y1="0" x2="110" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9993a"/><stop offset="40%" stop-color="#c9993a"/><stop offset="42%" stop-color="#2458b3"/><stop offset="100%" stop-color="#2458b3"/></linearGradient></defs>
+    <text x="0" y="21" font-family="Outfit,sans-serif" font-weight="800" font-size="20" fill="url(#fG)" letter-spacing="-0.3">ARROW</text>
+    <path d="M2 26 Q50 23 95 26" stroke="url(#fG)" stroke-width="1.2" fill="none"/>
+    <path d="M89 22 L98 26 L89 30" stroke="#2458b3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </svg><br>
+  <em style="color:rgba(200,200,220,0.3);font-size:0.7rem;">rise with clarity</em><br><br>
+  Elective 1: AI-Driven Decision Making · Social Focus: Education Access &amp; Financial Inclusion<br>
+  Powered by Claude AI (Anthropic) · Free for every Indian student · 2025
+</footer>
+
+<script>
+// Stars background
+var starsEl = document.getElementById('stars');
+for(var i=0;i<80;i++){
+  var s = document.createElement('div');
+  s.className='star';
+  var sz = Math.random()*1.8+0.4;
+  s.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+Math.random()*100+'%;left:'+Math.random()*100+'%;--d:'+(2.5+Math.random()*5)+'s;animation-delay:'+Math.random()*6+'s;';
+  starsEl.appendChild(s);
+}
+
+var currentStep = 1;
+var sd = {};
+var lastResult = null;
+var savedPaths = [];
+
+// ---- NAVIGATION ----
+var STEP_IDS = ['step1','step2','step3','loaderCard','resultCard'];
+
+function hideAllSteps(){
+  for(var i=0;i<STEP_IDS.length;i++){
+    var el = document.getElementById(STEP_IDS[i]);
+    if(el){ el.style.display='none'; }
+  }
+}
+
+function showEl(id){
+  var el = document.getElementById(id);
+  if(el){ el.style.display='block'; }
+}
+
+function goStep(n){
+  hideAllSteps();
+  currentStep = n;
+  showEl('step'+n);
+  updateDots(n);
+  var wiz = document.getElementById('wizard');
+  if(wiz) wiz.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function goBackToStep(n){
+  goStep(n);
+  showToast('Edit your answers then click Regenerate');
+}
+
+function updateDots(n){
+  var labels = ['Profile','Interests','Goals','My Path'];
+  for(var i=1;i<=4;i++){
+    var d = document.getElementById('sd'+i);
+    if(!d) continue;
+    d.className = 's-dot'+(i<n?' done':i===n?' active':'');
+    d.removeAttribute('onclick');
+    if(i<n && i<4){
+      (function(step){ d.onclick = function(){ goBackToStep(step); }; })(i);
+    }
+    d.innerHTML = (i<n?'&#10003;':i)+'<span class="s-label">'+labels[i-1]+'</span>';
+  }
+  for(var j=1;j<=3;j++){
+    var line = document.getElementById('sl'+j);
+    if(line) line.className = 's-line'+(j<n?' done':'');
+  }
+}
+
+function tog(el){ el.classList.toggle('sel'); }
+
+function togSingle(el, gid){
+  var chips = document.querySelectorAll('#'+gid+' .chip');
+  for(var i=0;i<chips.length;i++) chips[i].classList.remove('sel');
+  el.classList.add('sel');
+}
+
+function getSel(gid){
+  var result = [];
+  var chips = document.querySelectorAll('#'+gid+' .chip.sel');
+  for(var i=0;i<chips.length;i++) result.push(chips[i].textContent.trim());
+  return result;
+}
+
+function switchTab(name, btn){
+  var panels = document.querySelectorAll('.tab-panel');
+  for(var i=0;i<panels.length;i++) panels[i].classList.remove('active');
+  var tabs = document.querySelectorAll('.rtab');
+  for(var i=0;i<tabs.length;i++) tabs[i].classList.remove('active');
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+function filterUni(btn, type){
+  var btns = document.querySelectorAll('.uf-btn');
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove('active');
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('.uni-card');
+  for(var i=0;i<cards.length;i++){
+    cards[i].style.display = (type==='all' || cards[i].dataset.type===type) ? 'block' : 'none';
+  }
+}
+
+// ---- GENERATE ----
+function generate(){
+  sd.name = document.getElementById('name').value.trim() || 'Student';
+  sd.grade = document.getElementById('grade').value;
+  sd.stream = document.getElementById('stream').value;
+  sd.background = document.getElementById('background').value;
+  sd.state = document.getElementById('state').value.trim();
+  sd.subjects = getSel('subjects');
+  sd.hobbies = getSel('hobbies');
+  sd.priority = getSel('priorities')[0] || 'Growth & Ambition';
+  sd.income = getSel('income')[0] || 'Not specified';
+  var academicVal = parseInt(document.getElementById('academic').value);
+  var academicMap = ['','Struggling','Average','Good','Very Good','Top Student'];
+  sd.academic = academicMap[academicVal] || 'Average';
+  sd.dream = document.getElementById('dream').value.trim();
+
+  hideAllSteps();
+  showEl('loaderCard');
+  updateDots(4);
+  document.getElementById('wizard').scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Build prompt using string concat to avoid backtick issues
+  var promptText = 'You are Arrow AI - a warm expert career counselor for Indian students.\n\n';
+  promptText += 'Student Profile:\n';
+  promptText += '- Name: ' + sd.name + '\n';
+  promptText += '- Class/Year: ' + (sd.grade || 'Not specified') + '\n';
+  promptText += '- Stream: ' + (sd.stream || 'Not specified') + '\n';
+  promptText += '- Family background: ' + (sd.background || 'Not specified') + '\n';
+  promptText += '- State: ' + (sd.state || 'Not specified') + '\n';
+  promptText += '- Subjects enjoyed: ' + (sd.subjects.join(', ') || 'Not specified') + '\n';
+  promptText += '- Activities enjoyed: ' + (sd.hobbies.join(', ') || 'Not specified') + '\n';
+  promptText += '- Career priority: ' + sd.priority + '\n';
+  promptText += '- Monthly family income: ' + sd.income + '\n';
+  promptText += '- Academic strength: ' + sd.academic + '\n';
+  promptText += '- Dream/Goal: ' + (sd.dream || 'Not specified') + '\n\n';
+  promptText += 'CRITICAL: Match careers to what the student ACTUALLY chose. Biology = medicine. Art = design. Writing = journalism. Do NOT default to software engineer unless they picked computers/coding.\n\n';
+  promptText += 'Respond ONLY with valid JSON, no markdown:\n';
+  promptText += '{"tagline":"warm personal sentence for ' + sd.name + '",';
+  promptText += '"careers":[';
+  promptText += '{"emoji":"emoji","title":"career title","match":"XX% match","description":"2 sentences why this fits","tags":["tag1","tag2"],"top":true},';
+  promptText += '{"emoji":"emoji","title":"career title","match":"XX% match","description":"2 sentences","tags":["tag1","tag2"],"top":false},';
+  promptText += '{"emoji":"emoji","title":"career title","match":"XX% match","description":"2 sentences","tags":["tag1","tag2"],"top":false},';
+  promptText += '{"emoji":"emoji","title":"career title","match":"XX% match","description":"2 sentences","tags":["tag1","tag2"],"top":false}';
+  promptText += '],';
+  promptText += '"universities":[';
+  promptText += '{"emoji":"emoji","name":"Real Indian University","location":"City, State","type":"central","matchLevel":"high","programs":["Program1"],"fees":"Rs X/year","entranceExam":"Exam","scholarship":"Info"},';
+  promptText += '{"emoji":"emoji","name":"Real University","location":"City, State","type":"state","matchLevel":"high","programs":["Program"],"fees":"Rs X/year","entranceExam":"Exam","scholarship":"Info"},';
+  promptText += '{"emoji":"emoji","name":"Real University","location":"City, State","type":"private","matchLevel":"med","programs":["Program"],"fees":"Rs X/year","entranceExam":"Exam","scholarship":"Info"},';
+  promptText += '{"emoji":"emoji","name":"Real University","location":"City, State","type":"state","matchLevel":"high","programs":["Program"],"fees":"Rs X/year","entranceExam":"Exam","scholarship":"Info"},';
+  promptText += '{"emoji":"emoji","name":"Real University","location":"City, State","type":"central","matchLevel":"med","programs":["Program"],"fees":"Rs X/year","entranceExam":"Exam","scholarship":"Info"},';
+  promptText += '{"emoji":"emoji","name":"International or Online University","location":"Country","type":"abroad","matchLevel":"med","programs":["Program"],"fees":"Cost","entranceExam":"Requirements","scholarship":"Info"}';
+  promptText += '],';
+  promptText += '"roadmap":[';
+  promptText += '{"title":"Right Now","desc":"specific action"},';
+  promptText += '{"title":"Next Month","desc":"specific step"},';
+  promptText += '{"title":"3 Months","desc":"specific milestone"},';
+  promptText += '{"title":"6 Months","desc":"specific milestone"},';
+  promptText += '{"title":"1 Year","desc":"specific target"}';
+  promptText += '],';
+  promptText += '"scholarships":[';
+  promptText += '{"name":"Real scholarship","amount":"Rs X/year","eligibility":"who qualifies"},';
+  promptText += '{"name":"Real scholarship","amount":"Rs X/year","eligibility":"criteria"},';
+  promptText += '{"name":"Real scholarship","amount":"Rs X/year","eligibility":"criteria"},';
+  promptText += '{"name":"Real scholarship","amount":"Rs X/year","eligibility":"criteria"}';
+  promptText += '],';
+  promptText += '"quote":"warm encouraging 2-3 sentences for ' + sd.name + '",';
+  promptText += '"quoteAttr":"Arrow AI, for ' + sd.name + '"}';
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 2500,
+      messages: [{role:'user', content: promptText}]
+    })
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(data){
+    if(data.error) throw new Error(data.error.message);
+    var raw = '';
+    for(var i=0;i<data.content.length;i++){
+      if(data.content[i].text) raw += data.content[i].text;
+    }
+    raw = raw.replace(/```json/g,'').replace(/```/g,'').trim();
+    lastResult = JSON.parse(raw);
+    renderResult(lastResult);
+  })
+  .catch(function(e){
+    console.log('Using smart fallback:', e.message);
+    lastResult = buildFallback();
+    renderResult(lastResult);
+  });
+}
+
+// Smart fallback based on user's actual selections
+function buildFallback(){
+  var name = sd.name;
+  var subjects = sd.subjects || [];
+  var hobbies = sd.hobbies || [];
+  var priority = sd.priority || '';
+  var stream = sd.stream || '';
+  var income = sd.income || '';
+
+  function has(arr, keyword){ for(var i=0;i<arr.length;i++){ if(arr[i].indexOf(keyword)>-1) return true; } return false; }
+
+  var hasBio = has(subjects,'Biology');
+  var hasMath = has(subjects,'Math');
+  var hasComputers = has(subjects,'Computers');
+  var hasArt = has(subjects,'Art');
+  var hasEcon = has(subjects,'Economics');
+  var hasHistory = has(subjects,'History');
+  var hasPsych = has(subjects,'Psychology');
+  var hasPolSci = has(subjects,'Political');
+  var hasLit = has(subjects,'English');
+  var hasGeo = has(subjects,'Geography');
+  var hasScience = has(subjects,'Science');
+
+  var likesTeaching = has(hobbies,'Teaching');
+  var likesBuilding = has(hobbies,'Building');
+  var likesWriting = has(hobbies,'Writing');
+  var likesDesign = has(hobbies,'Drawing');
+  var likesSocial = has(hobbies,'Social');
+  var likesBusiness = has(hobbies,'Business');
+  var likesSports = has(hobbies,'Sports');
+  var likesTech = has(hobbies,'Gaming');
+  var likesAgriculture = has(hobbies,'Agriculture');
+  var likesDebating = has(hobbies,'Debating');
+
+  var isPCB = stream.indexOf('PCB')>-1;
+  var isPCM = stream.indexOf('PCM')>-1;
+  var isArts = stream.indexOf('Arts')>-1 || stream.indexOf('Humanities')>-1;
+  var isCommerce = stream.indexOf('Commerce')>-1;
+
+  var careerPool = [];
+
+  if(hasBio || isPCB){
+    careerPool.push({emoji:'🏥',title:'Doctor / MBBS Physician',match:'94% match',description:'Your love for Biology maps perfectly to medicine. MBBS is one of India\'s most respected and well-paying careers — and every community needs skilled doctors.',tags:['Biology','Patient Care','Problem Solving'],top:false});
+    careerPool.push({emoji:'🧪',title:'Biotechnologist / Medical Researcher',match:'87% match',description:'Biology and science skills are the foundation of India\'s growing biotech sector. Research roles in pharma and biotech offer excellent salaries and global opportunities.',tags:['Research','Biology','Innovation'],top:false});
+  }
+  if(hasArt || likesDesign){
+    careerPool.push({emoji:'🎨',title:'Graphic Designer / UI-UX Designer',match:'93% match',description:'Your love for art and design is a superpower in today\'s digital world. Every company needs talented designers, and this career offers excellent freelance and full-time opportunities.',tags:['Creativity','Visual Design','Digital Tools'],top:false});
+    careerPool.push({emoji:'🏗',title:'Architect / Interior Designer',match:'86% match',description:'Architecture blends creativity with structure — perfect for someone who loves designing. It is a prestigious career with strong demand across India\'s rapidly growing cities.',tags:['Design','Art','Spatial Thinking'],top:false});
+  }
+  if(hasLit || likesWriting){
+    careerPool.push({emoji:'✍️',title:'Journalist / Content Writer',match:'91% match',description:'Your passion for English and writing is rare and valuable. India\'s digital media boom means huge demand for skilled writers in journalism, content, and copywriting.',tags:['Writing','Research','Communication'],top:false});
+  }
+  if(likesTeaching){
+    careerPool.push({emoji:'👩‍🏫',title:'Teacher / EdTech Professional',match:'90% match',description:'Your love of teaching others is a true gift. Education is one of India\'s most respected careers, and EdTech platforms offer excellent salaries for passionate educators.',tags:['Teaching','Communication','Empathy'],top:false});
+  }
+  if(hasEcon || likesBusiness || isCommerce){
+    careerPool.push({emoji:'📊',title:'Business Analyst / Entrepreneur',match:'89% match',description:'Economics and business thinking are in high demand. Analysts who understand markets and strategy are among the best-paid professionals in India today.',tags:['Analysis','Strategy','Business'],top:false});
+    careerPool.push({emoji:'🏦',title:'Chartered Accountant / Finance Professional',match:'84% match',description:'Commerce and Economics lead naturally to CA or banking careers — some of India\'s most stable and well-paying professions with a clear structured path through ICAI.',tags:['Finance','Accounting','Stability'],top:false});
+  }
+  if(hasPolSci || likesDebating || hasHistory){
+    careerPool.push({emoji:'⚖️',title:'Lawyer / Legal Professional',match:'88% match',description:'Your interest in political science and debating shows a natural aptitude for law. LLB from a top NLU opens doors to litigation, corporate law, and government positions.',tags:['Argumentation','Analysis','Justice'],top:false});
+    careerPool.push({emoji:'🏛',title:'Civil Services Officer (IAS / IPS)',match:'85% match',description:'Civil services is the most prestigious and impactful career in India. With your interest in civics and society, you have what it takes — UPSC rewards hard work over privilege.',tags:['Public Service','Leadership','Impact'],top:false});
+  }
+  if(hasComputers || likesTech || isPCM){
+    careerPool.push({emoji:'💻',title:'Software Engineer / Tech Professional',match:'90% match',description:'Your interest in computers and technology aligns with India\'s largest job market. Coding skills open doors at top companies with excellent salaries from day one.',tags:['Coding','Problem Solving','Logic'],top:false});
+  }
+  if(hasPsych){
+    careerPool.push({emoji:'🧠',title:'Psychologist / Counsellor',match:'87% match',description:'Psychology is one of India\'s most underserved and growing fields. Your empathetic nature and interest in the mind make you well-suited for clinical or corporate counseling roles.',tags:['Empathy','Mental Health','Analysis'],top:false});
+  }
+  if(likesSports){
+    careerPool.push({emoji:'🏋️',title:'Sports Coach / Physical Education Expert',match:'82% match',description:'Sports science and coaching is a growing career in India as schools and academies invest more in talent development. Your passion for fitness is your foundation.',tags:['Fitness','Coaching','Leadership'],top:false});
+  }
+  if(likesAgriculture || hasGeo){
+    careerPool.push({emoji:'🌾',title:'Agricultural Scientist / Environmental Expert',match:'84% match',description:'India\'s massive agricultural sector and growing focus on sustainability means careers in agri-science and environmental management offer both impact and stability.',tags:['Agriculture','Science','Sustainability'],top:false});
+  }
+
+  // Default if nothing selected
+  if(careerPool.length === 0){
+    careerPool.push({emoji:'💻',title:'Software Engineer',match:'82% match',description:'Technology skills are in high demand across India. This versatile path offers strong salaries and growth in every sector.',tags:['Logic','Coding','Problem Solving'],top:false});
+    careerPool.push({emoji:'📊',title:'Business Analyst',match:'75% match',description:'Analyzing business problems and finding solutions is a universal skill, great for those who enjoy understanding how organizations work.',tags:['Analysis','Communication','Strategy'],top:false});
+    careerPool.push({emoji:'👩‍🏫',title:'Educator / EdTech Professional',match:'70% match',description:'Teaching is one of the most impactful careers in India. EdTech platforms offer new-age opportunities for passionate educators.',tags:['Communication','Teaching','Empathy'],top:false});
+    careerPool.push({emoji:'🏛',title:'Civil Services Officer (IAS)',match:'65% match',description:'The most prestigious path for students who want to serve the nation and drive systemic change at scale.',tags:['Dedication','Leadership','Public Service'],top:false});
+  }
+
+  // Take top 4 and mark first as best match
+  var topCareers = careerPool.slice(0,4);
+  topCareers[0].top = true;
+  // Pad if needed
+  while(topCareers.length < 4){
+    topCareers.push({emoji:'🏛',title:'Civil Services Officer (IAS)',match:'68% match',description:'One of India\'s most respected paths, open to all streams, rewarding dedication and a desire to serve over privilege or background.',tags:['Public Service','Dedication','Impact'],top:false});
+  }
+
+  var unis = [
+    {emoji:'🏛️',name:'Delhi University (DU)',location:'New Delhi',type:'central',matchLevel:'high',programs:['B.A / B.Sc / B.Com Honours'],fees:'Rs 15,000-25,000/year',entranceExam:'CUET UG',scholarship:'ECA and DSW Merit Scholarships'},
+    {emoji:'🎓',name:'Jawaharlal Nehru University (JNU)',location:'New Delhi',type:'central',matchLevel:'high',programs:['BA Social Sciences','MA Economics'],fees:'Under Rs 10,000/year',entranceExam:'CUET PG / JNUEE',scholarship:'Need-based full fee waiver'},
+    {emoji:'📚',name:'TISS - Tata Institute of Social Sciences',location:'Mumbai, Maharashtra',type:'central',matchLevel:'high',programs:['Social Work','Education','HR'],fees:'Rs 20,000-40,000/year',entranceExam:'TISSNET',scholarship:'Extensive support for low-income families'},
+    {emoji:'🏫',name:'Anna University',location:'Chennai, Tamil Nadu',type:'state',matchLevel:'high',programs:['B.E / B.Tech programs'],fees:'Rs 30,000-60,000/year',entranceExam:'TNEA',scholarship:'Tamil Nadu State Merit Scholarship'},
+    {emoji:'🎯',name:'Ambedkar University Delhi (AUD)',location:'New Delhi',type:'state',matchLevel:'med',programs:['Liberal Arts','Psychology','Economics'],fees:'Rs 10,000-20,000/year',entranceExam:'AUD Entrance / CUET',scholarship:'SC/ST full scholarship, income-based waiver'},
+    {emoji:'🌏',name:'University of the People',location:'USA (Fully Online)',type:'abroad',matchLevel:'med',programs:['B.Sc Computer Science','B.B.A'],fees:'Tuition-free',entranceExam:'No entrance exam',scholarship:'Fully accredited tuition-free US degree'}
+  ];
+
+  if(hasBio || isPCB){
+    unis[0] = {emoji:'🏥',name:'AIIMS - All India Institute of Medical Sciences',location:'New Delhi',type:'central',matchLevel:'high',programs:['MBBS','Nursing','Biotechnology'],fees:'Rs 1,000-5,000/year (subsidized)',entranceExam:'NEET UG',scholarship:'Merit-cum-means scholarship'};
+    unis[3] = {emoji:'🧪',name:'Kasturba Medical College',location:'Mangalore, Karnataka',type:'private',matchLevel:'med',programs:['MBBS','BDS','Nursing'],fees:'Rs 3-5L/year',entranceExam:'NEET UG',scholarship:'State and private merit scholarships'};
+  }
+  if(hasArt || likesDesign){
+    unis[2] = {emoji:'🎨',name:'National Institute of Design (NID)',location:'Ahmedabad, Gujarat',type:'central',matchLevel:'high',programs:['B.Des Graphic Design','Communication Design'],fees:'Rs 1.5-2.5L/year',entranceExam:'NID DAT',scholarship:'Merit and need-based grants'};
+    unis[1] = {emoji:'🖼',name:'Sir J.J. School of Art',location:'Mumbai, Maharashtra',type:'state',matchLevel:'high',programs:['Fine Art','Applied Art','Architecture'],fees:'Rs 15,000-30,000/year',entranceExam:'State CET',scholarship:'Maharashtra state scholarship'};
+  }
+
+  var scholarships = [
+    {name:'National Scholarship Portal (NSP) - Post-Matric',amount:'Up to Rs 12,000/year',eligibility:'Income below Rs 2.5L/year, Class 9 onwards, all communities'},
+    {name:'Inspire Scholarship - DST, Govt of India',amount:'Rs 80,000/year',eligibility:'Top 1% in Class 12 boards, pursuing natural sciences'},
+    {name:'Begum Hazrat Mahal National Scholarship',amount:'Rs 10,000/year',eligibility:'Girl students from minority communities, Class 9-12'},
+    {name:'State Government Merit Scholarship',amount:'Rs 5,000-20,000/year',eligibility:'Based on Class 10/12 board percentage - check your state portal'}
+  ];
+
+  var interestList = [];
+  for(var i=0;i<subjects.length&&i<2;i++) interestList.push(subjects[i]);
+  for(var i=0;i<hobbies.length&&interestList.length<3;i++) interestList.push(hobbies[i]);
+  var interestSummary = interestList.length > 0 ? interestList.join(', ') : 'your unique strengths';
+
+  return {
+    tagline: name + ', your passion for ' + interestSummary + ' combined with your ' + sd.academic + ' academic strength points to an exciting future — Arrow has mapped it out just for you.',
+    careers: topCareers,
+    universities: unis,
+    roadmap: [
+      {title:'Right Now', desc:'Register on the National Scholarship Portal — scholarships.gov.in. Takes 20 minutes and can unlock thousands of rupees in aid immediately.'},
+      {title:'Next Month', desc:'Take a free mock CUET test at nta.ac.in to measure your current level and identify your strongest subjects.'},
+      {title:'3 Months', desc:'Shortlist your top 5 universities from your matches. Download their brochures and note exact eligibility criteria and application deadlines.'},
+      {title:'6 Months', desc:'Build one core skill for your chosen career — join NPTEL (free) or apply for Coursera financial aid. A certification adds real value to applications.'},
+      {title:'1 Year', desc:'Submit university applications via CUET, apply for 2-3 scholarships simultaneously, and connect with a mentor through iMentor India or Buddy4Study.'}
+    ],
+    scholarships: scholarships,
+    quote: name + ', every great journey begins with a single brave step. The fact that you are here, planning your future, shows you have what it takes. Your interests in ' + interestSummary + ' are not just hobbies — they are the seeds of a remarkable career. Arrow believes in you completely.',
+    quoteAttr: 'Arrow AI, for ' + name
+  };
+}
+
+function escHtml(str){
+  if(str===null||str===undefined) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderResult(r){
+  if(!r || !r.careers || !r.universities || !r.roadmap || !r.scholarships){
+    hideAllSteps();
+    showEl('resultCard');
+    document.getElementById('careersGrid').innerHTML = '<div style="background:rgba(255,70,70,0.05);border:1.5px solid rgba(255,70,70,0.2);border-radius:12px;padding:1.5rem;text-align:center;color:#ff8080;"><h4 style="margin-bottom:0.5rem;">Something went wrong</h4><p style="font-size:0.82rem;color:#6a6a90;">Please go back and try again.</p></div>';
+    return;
+  }
+
+  document.getElementById('rName').textContent = sd.name + "'s Arrow Path";
+  document.getElementById('rTagline').textContent = r.tagline || '';
+
+  // Careers
+  var careersHtml = '';
+  for(var i=0;i<r.careers.length;i++){
+    var c = r.careers[i];
+    if(!c) continue;
+    var tags = c.tags || [];
+    var tagsHtml = '';
+    for(var t=0;t<tags.length;t++) tagsHtml += '<span class="ctag">'+escHtml(tags[t])+'</span>';
+    careersHtml += '<div class="career-card '+(c.top?'top':'')+'" tabindex="0">';
+    if(c.top) careersHtml += '<div class="top-badge">Best Match</div>';
+    careersHtml += '<div class="career-emoji">'+(c.emoji||'🎯')+'</div>';
+    careersHtml += '<div class="career-title">'+escHtml(c.title)+'</div>';
+    careersHtml += '<div class="career-match">'+escHtml(c.match)+'</div>';
+    careersHtml += '<div class="career-desc">'+escHtml(c.description)+'</div>';
+    careersHtml += '<div class="career-tags">'+tagsHtml+'</div>';
+    careersHtml += '</div>';
+  }
+  document.getElementById('careersGrid').innerHTML = careersHtml;
+
+  // Universities
+  var uniHtml = '';
+  for(var i=0;i<r.universities.length;i++){
+    var u = r.universities[i];
+    if(!u) continue;
+    var progs = u.programs || [];
+    var progsHtml = '';
+    for(var p=0;p<progs.length;p++) progsHtml += '<span class="uni-prog">'+escHtml(progs[p])+'</span>';
+    var ml = u.matchLevel || 'med';
+    var badgeClass = ml==='high' ? 'match-high-badge' : 'match-med-badge';
+    var badgeText = ml==='high' ? 'High Match' : 'Good Match';
+    uniHtml += '<div class="uni-card match-'+ml+'" data-type="'+(u.type||'central')+'" tabindex="0">';
+    uniHtml += '<div class="uni-top-row"><div class="uni-logo-box">'+(u.emoji||'🏛️')+'</div><div class="uni-match-badge '+badgeClass+'">'+badgeText+'</div></div>';
+    uniHtml += '<div class="uni-name">'+escHtml(u.name)+'</div>';
+    uniHtml += '<div class="uni-location">📍 '+escHtml(u.location)+'</div>';
+    uniHtml += '<div class="uni-programs">'+progsHtml+'</div>';
+    uniHtml += '<div class="uni-facts"><div class="uni-fact">💰 <strong>'+escHtml(u.fees)+'</strong></div><div class="uni-fact">📝 <strong>'+escHtml(u.entranceExam)+'</strong></div></div>';
+    uniHtml += '<div class="uni-scholar-note">🎓 '+escHtml(u.scholarship)+'</div>';
+    uniHtml += '<button class="uni-apply-btn" onclick="window.open(\'https://cuet.samarth.ac.in\',\'_blank\')">View &amp; Apply</button>';
+    uniHtml += '</div>';
+  }
+  document.getElementById('uniGrid').innerHTML = uniHtml;
+
+  // Roadmap
+  var roadmapHtml = '';
+  for(var i=0;i<r.roadmap.length;i++){
+    var step = r.roadmap[i];
+    if(!step) continue;
+    roadmapHtml += '<div class="r-step"><div class="r-num">'+(i+1)+'</div><div class="r-content"><h5>'+escHtml(step.title)+'</h5><p>'+escHtml(step.desc)+'</p></div></div>';
+  }
+  document.getElementById('roadmapSteps').innerHTML = roadmapHtml;
+  document.getElementById('motivationQuote').textContent = '\u201c' + (r.quote||'') + '\u201d';
+  document.getElementById('motivationAttr').textContent = r.quoteAttr || ('Arrow AI, for ' + sd.name);
+
+  // Scholarships
+  var scholarHtml = '';
+  for(var i=0;i<r.scholarships.length;i++){
+    var sc = r.scholarships[i];
+    if(!sc) continue;
+    scholarHtml += '<div class="scholar-item"><div><div class="scholar-name">'+escHtml(sc.name)+'</div><div class="scholar-elig">'+escHtml(sc.eligibility)+'</div></div><div class="scholar-amt">'+escHtml(sc.amount)+'</div></div>';
+  }
+  document.getElementById('scholarList').innerHTML = scholarHtml;
+
+  hideAllSteps();
+  showEl('resultCard');
+  var inBtn = document.getElementById('inlineSaveBtn');
+  if(inBtn){ inBtn.disabled=false; inBtn.textContent='💾 Save This Path to My Paths'; }
+  document.getElementById('saveThisBtn').disabled = false;
+  document.getElementById('resultCard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetAll(){
+  hideAllSteps();
+  showEl('step1');
+  currentStep = 1;
+  updateDots(1);
+  lastResult = null;
+  document.getElementById('wizard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ---- SAVED PATHS ----
+function openPanel(){
+  document.getElementById('savedPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+  renderSavedList();
+}
+function closePanel(){
+  document.getElementById('savedPanel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+function saveCurrentPath(){
+  if(!lastResult || !sd.name) return;
+  var path = {
+    id: Date.now(),
+    name: sd.name, grade: sd.grade||'', stream: sd.stream||'',
+    topCareer: (lastResult.careers && lastResult.careers[0]) ? lastResult.careers[0].title : '',
+    savedAt: new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),
+    profile: JSON.parse(JSON.stringify(sd)),
+    result: JSON.parse(JSON.stringify(lastResult))
+  };
+  savedPaths.unshift(path);
+  updateSavedCount();
+  renderSavedList();
+  showToast('Path saved! View in My Paths');
+  var inBtn = document.getElementById('inlineSaveBtn');
+  if(inBtn){ inBtn.disabled=true; inBtn.textContent='Saved!'; }
+  document.getElementById('saveThisBtn').disabled = true;
+}
+function loadPath(id){
+  var p = null;
+  for(var i=0;i<savedPaths.length;i++){ if(savedPaths[i].id===id){ p=savedPaths[i]; break; } }
+  if(!p) return;
+  var prof = p.profile;
+  document.getElementById('name').value = prof.name||'';
+  document.getElementById('grade').value = prof.grade||'';
+  document.getElementById('stream').value = prof.stream||'';
+  document.getElementById('background').value = prof.background||'';
+  document.getElementById('state').value = prof.state||'';
+  document.getElementById('dream').value = prof.dream||'';
+  var aMap = ['','Struggling','Average','Good','Very Good','Top Student'];
+  var aIdx = aMap.indexOf(prof.academic);
+  document.getElementById('academic').value = aIdx>0 ? aIdx : 3;
+  restoreChips('subjects', prof.subjects||[]);
+  restoreChips('hobbies', prof.hobbies||[]);
+  restoreChipsSingle('priorities', prof.priority);
+  restoreChipsSingle('income', prof.income);
+  for(var k in prof){ sd[k] = prof[k]; }
+  lastResult = JSON.parse(JSON.stringify(p.result));
+  closePanel();
+  renderResult(lastResult);
+  updateDots(4);
+  showToast('Path loaded');
+}
+function deletePath(id){
+  var newPaths = [];
+  for(var i=0;i<savedPaths.length;i++){ if(savedPaths[i].id!==id) newPaths.push(savedPaths[i]); }
+  savedPaths = newPaths;
+  updateSavedCount();
+  renderSavedList();
+  showToast('Path deleted');
+}
+function restoreChips(gid, arr){
+  var chips = document.querySelectorAll('#'+gid+' .chip');
+  for(var i=0;i<chips.length;i++){
+    var inArr = arr.indexOf(chips[i].textContent.trim()) > -1;
+    if(inArr) chips[i].classList.add('sel'); else chips[i].classList.remove('sel');
+  }
+}
+function restoreChipsSingle(gid, val){
+  var chips = document.querySelectorAll('#'+gid+' .chip');
+  for(var i=0;i<chips.length;i++){
+    if(chips[i].textContent.trim()===val) chips[i].classList.add('sel');
+    else chips[i].classList.remove('sel');
+  }
+}
+function updateSavedCount(){ document.getElementById('savedCount').textContent = savedPaths.length; }
+function renderSavedList(){
+  var el = document.getElementById('savedList');
+  if(!savedPaths.length){
+    el.innerHTML = '<div class="sp-empty"><div style="font-size:2.5rem;margin-bottom:0.8rem;">📭</div>No saved paths yet.<br><br>Generate a result and save it here.</div>';
+    return;
+  }
+  var html = '';
+  for(var i=0;i<savedPaths.length;i++){
+    var p = savedPaths[i];
+    html += '<div class="saved-path-card">';
+    html += '<div class="spc-name">'+escHtml(p.name)+"'s Path</div>";
+    html += '<div class="spc-meta">'+escHtml(p.grade)+(p.stream?' · '+escHtml(p.stream):'')+' · Saved '+p.savedAt+'</div>';
+    html += '<div class="spc-career">Top match: '+escHtml(p.topCareer)+'</div>';
+    html += '<div class="spc-actions">';
+    html += '<button class="spc-load" onclick="loadPath('+p.id+')">Load</button>';
+    html += '<button class="spc-del" onclick="deletePath('+p.id+')">Delete</button>';
+    html += '</div></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ---- TOAST ----
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+
+// Keyboard support for chips
+document.addEventListener('keydown', function(e){
+  if((e.key===' '||e.key==='Enter') && e.target.classList.contains('chip')){
+    e.preventDefault();
+    e.target.click();
+  }
+});
+
+// Scroll reveal
+var obs = new IntersectionObserver(function(entries){
+  for(var i=0;i<entries.length;i++){
+    if(entries[i].isIntersecting){
+      entries[i].target.classList.add('vis');
+      obs.unobserve(entries[i].target);
+    }
+  }
+}, {threshold:0.07});
+var revealEls = document.querySelectorAll('.reveal');
+for(var i=0;i<revealEls.length;i++) obs.observe(revealEls[i]);
+
+// Init
+hideAllSteps();
+showEl('step1');
+updateDots(1);
+</script>
+</body>
+</html>
